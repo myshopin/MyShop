@@ -1,0 +1,21 @@
+.background{
+    background-image: linear-gradient(-90deg,#070599,#88165a);
+}
+.navcolor{
+    background-image: linear-gradient(-90deg,#80093b,#200877);
+}
+.card{
+    margin-top: 8px;
+    box-shadow: 5px 5px 12px  rgb(48, 47, 47),0 4px 4px 0 rgb(61, 59, 59);
+}
+.mytoggle{
+    display: flex;
+    flex-direction: column;
+}
+.mytoggler{
+    height: 5px;
+    background-color: white;
+    width: 35px;
+    margin: 2px;
+}
+    

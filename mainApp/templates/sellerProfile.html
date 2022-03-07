@@ -1,0 +1,109 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+<title>MyShop | Profile</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <h4 class="background text-light p-2 text-center">Seller Profile Section</h4>
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12">
+            {% if User.pic %}
+            <img src={{User.pic.url}} class="w-100">
+            {% else %}
+            <img src="{% static 'images/noimage.jpg' %}" class="w-100">
+            {% endif %}
+        </div>
+        <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-6 col-sm-12 col-xs-12 col-12">
+            <table class="table table-light table-striped table-hover">
+                <tr>
+                    <th>Name:</th>
+                    <td>{{User.name}}</td>
+                </tr>
+                <tr>
+                    <th>User Name:</th>
+                    <td>{{User.username}}</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>{{User.email}}</td>
+                </tr>
+                <tr>
+                    <th>Phone:</th>
+                    <td>{{User.phone}}</td>
+                </tr>
+                <tr>
+                    <th>Address Line 1:</th>
+                    <td>{{User.addressline1}}</td>
+                </tr>
+                <tr>
+                    <th>Address Line 2:</th>
+                    <td>{{User.addressline2}}</td>
+                </tr>
+                <tr>
+                    <th>Address Line 3:</th>
+                    <td>{{User.addressline3}}</td>
+                </tr>
+                <tr>
+                    <th>Pin:</th>
+                    <td>{{User.pin}}</td>
+                </tr>
+                <tr>
+                    <th>City:</th>
+                    <td>{{User.city}}</td>
+                </tr>
+                <tr>
+                    <th>State:</th>
+                    <td>{{User.state}}</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><a class="btn background text-light w-100" href="/updateProfile/">Update Profile</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <h4 class="background text-light p-2 text-center mt-2">My Product Section <span><a href="/addProduct/"><span class="material-icons " style="font-size: 30px; color: white;">add_circle</span></a></h4>
+        <div class="table-responsive">
+            <table class="table table-light table-striped table-hover">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Base Price</th>
+                    <th>Discount</th>
+                    <th>Final Price</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Stock</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for i in Products %}
+                <tr>
+                    {% if i.pic1 %}
+                    <td><img src={{i.pic1.url}} width="100"></td>
+                    {% else %}
+                    <td><img src="{% static 'images/noimagep.png' %}" width="100"></td>
+                    {% endif %}
+                    <td>{{i.name}}</td>
+                    <td>{{i.baseprice}}</td>
+                    <td>{{i.discount}}%</td>
+                    <td>{{i.finalprice}}</td>
+                    <td>{{i.color}}</td>
+                    <td>{{i.size}}</td>
+                    {% if i.stock %}
+                    <td>In Stock</td>
+                    {% else %}
+                    <td>Out Of Stock</td>
+                    {% endif %}
+                    <td><a href="/editProduct/{{i.id}}"><span class="material-icons " style="font-size: 30px; color: navy;">edit</span></a></td>
+                    <td><a href="/deleteProduct/{{i.id}}"><span class="material-icons " style="font-size: 30px; color: navy;">delete_forever</span></a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endblock %}
